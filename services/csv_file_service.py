@@ -3,6 +3,30 @@ import pandas as pd
 
 from models.movies_metadata import MoviesMetadata
 
+## Method to read csv, convert to List of Python Objects
+## Not used for task execution
+def read_metadata_to_list_object(filename):
+    """
+    Reads movie metadata from a CSV file into a list of MoviesMetadata objects.
+
+    Args:
+        filename (str): Path to the CSV file containing movie metadata.
+
+    Returns:
+        list: List of MoviesMetadata objects representing movie metadata.
+    """
+    df = pd.read_csv(filename)
+    metadata_list = []
+
+    for _, row in df.iterrows():
+        # Convert the row to a dictionary and create a MoviesMetadata object
+        movie = MoviesMetadata(**row.to_dict())
+        metadata_list.append(movie)
+    
+    print("Len of Metadata List")
+    print(len(metadata_list))
+    return metadata_list
+
 def read_ratings_to_df_and_analyze(filename):
     """
     Reads movie ratings data from a CSV file and calculates average ratings per movie.
@@ -170,27 +194,3 @@ def has_duplicates(list):
       duplicates += 1
   print(duplicates)
   return duplicates > 0  # Return True if duplicates exist, False otherwise
-
-## Method to read csv, convert to List of Python Objects
-## Not used for task execution
-def read_metadata_to_list_object(filename):
-    """
-    Reads movie metadata from a CSV file into a list of MoviesMetadata objects.
-
-    Args:
-        filename (str): Path to the CSV file containing movie metadata.
-
-    Returns:
-        list: List of MoviesMetadata objects representing movie metadata.
-    """
-    df = pd.read_csv(filename)
-    metadata_list = []
-
-    for _, row in df.iterrows():
-        # Convert the row to a dictionary and create a MoviesMetadata object
-        movie = MoviesMetadata(**row.to_dict())
-        metadata_list.append(movie)
-    
-    print("Len of Metadata List")
-    print(len(metadata_list))
-    return metadata_list
