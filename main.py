@@ -44,7 +44,7 @@ def main():
         movies_per_year = csv_file_service.extract_release_date_movies(movies_data)
         print("\nNumber of Movies Released Each Year:")
         for year, count in movies_per_year.items():
-            print(f"Year: {year} \t Movies Released: {count}")
+            print(f"Year: {int(year)} \t Movies Released: {count}")
         logging.info("Extracted movies released per year successfully.")
 
         # 6. Print the number of movies in each genre
